@@ -58,7 +58,7 @@ namespace WoTTool
             if (bigChoice == 4)
             {
                 informMe();
-            }
+            } //i pla nto throw a catch exception here for any number other than the 4 listed. This will apply for all future functions.
         }
 
             public static void clearReplays()
@@ -82,7 +82,7 @@ namespace WoTTool
             foreach (string file in files)
             {
                 Console.WriteLine($"{file} is present!");
-                System.Threading.Thread.Sleep(300);
+                System.Threading.Thread.Sleep(300); //This part here is supposed to go recursively through all folders but it doesnt seem to be working. I pla nto try and fix it later. I didt want to have all files.
             }
         }
         public static void clearMods()
@@ -90,7 +90,7 @@ namespace WoTTool
             string[] files = Directory.GetFiles(rootFolder);
             foreach (string file in files)
             {
-                File.Delete(file);
+                File.Delete(file); //This nereds to be improved. Im not entirely sure how effective this all is. I plan to improve it as time goes on
                 Console.WriteLine($"{file} was deleted.");
             }
         }

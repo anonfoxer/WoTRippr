@@ -1,0 +1,6 @@
+c:\users\kevin\documents\visual studio 2015\Projects\WoTTool\WoTTool\bin\Debug\WoTTool.exe.config
+c:\users\kevin\documents\visual studio 2015\Projects\WoTTool\WoTTool\bin\Debug\WoTTool.exe
+c:\users\kevin\documents\visual studio 2015\Projects\WoTTool\WoTTool\bin\Debug\WoTTool.pdb
+c:\users\kevin\documents\visual studio 2015\Projects\WoTTool\WoTTool\obj\Debug\WoTTool.csprojResolveAssemblyReference.cache
+c:\users\kevin\documents\visual studio 2015\Projects\WoTTool\WoTTool\obj\Debug\WoTTool.exe
+c:\users\kevin\documents\visual studio 2015\Projects\WoTTool\WoTTool\obj\Debug\WoTTool.pdb

@@ -69,6 +69,8 @@ namespace WoTTool
                 System.IO.File.Delete(file);
                 Console.WriteLine($"{file} was deleted");
             }
+            Console.WriteLine("Press any key to close.");
+            Console.ReadLine();
         }
             public static void verifyFiles()
         {

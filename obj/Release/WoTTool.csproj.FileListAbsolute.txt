@@ -1,0 +1,5 @@
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\WoTTool\WoTTool\bin\Release\WoTTool.exe.config
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\WoTTool\WoTTool\bin\Release\WoTTool.exe
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\WoTTool\WoTTool\bin\Release\WoTTool.pdb
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\WoTTool\WoTTool\obj\Release\WoTTool.exe
+C:\Users\Kevin\Documents\Visual Studio 2015\Projects\WoTTool\WoTTool\obj\Release\WoTTool.pdb

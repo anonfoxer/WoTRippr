@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +9,7 @@ namespace WoTTool
 {
     class Program
     {
-        static readonly string rootFolder = @"C:\Games\World_of_Tanks\res_mods\";
+        static readonly string rootFolder = @"C:\Games\World_of_Tanks\res_mods\1.6.0.0\"; //This is the directory im using for the mods deletion. This means I have to update it with game patches but Im still trying to figure out a way to go through each directory and then delete stuff. Oh well, working on that lol. Least I updated this project and didnt abadon it.
         static void Main(string[] args)
         {
             Console.Clear();
@@ -29,16 +29,20 @@ namespace WoTTool
 
 
 - World of Tanks Ripper
-- v1.0.0
+- v1.1.0
 - by anonfoxer
 - (c) 2019
 - github.com/anonfoxer
 
 ");
-            Console.WriteLine("1. Clear all replay files");
-            Console.WriteLine("2. Verify all game files");
-            Console.WriteLine("3. Clear all mods from res_mods");
-            Console.WriteLine("4. Info");
+            Console.WriteLine("1. Clear all replay files"); //clearReplays();
+            Console.WriteLine("2. Verify all game files"); //verifyFiles();
+            Console.WriteLine("3. Clear all mods from res_mods"); //clearMods();
+            Console.WriteLine("4. Dump cef.log"); //cefDump();
+            Console.WriteLine("5. Remove stuff from Curse/Twitch Client"); //thisDoesntWork();
+            Console.WriteLine("6. Info"); //informMe();
+
+
 
 
             var choice = Console.ReadLine();
@@ -57,11 +61,19 @@ namespace WoTTool
             }
             if (bigChoice == 4)
             {
+                cefDump();
+            }
+            if (bigChoice == 5)
+            {
+                thisDoesntWork();
+            }
+            if (bigChoice == 6)
+            {
                 informMe();
-            } //i pla nto throw a catch exception here for any number other than the 4 listed. This will apply for all future functions.
+            }
         }
 
-            public static void clearReplays()
+        public static void clearReplays()
         {
             string[] replays = System.IO.Directory.GetFiles(@"C:\Games\World_of_Tanks\replays", "*.wotreplay");
             foreach (string file in replays)
@@ -72,29 +84,37 @@ namespace WoTTool
             Console.WriteLine("Press any key to close.");
             Console.ReadLine();
         }
-            public static void verifyFiles()
+        public static void verifyFiles()
         {
             string[] files = System.IO.Directory.GetFiles(@"C:\Games\World_of_Tanks\", "*.*");
             foreach (string file in files)
             {
                 Console.WriteLine($"{file} is present!");
                 System.Threading.Thread.Sleep(300);
-            }
-            string[] files2 = System.IO.Directory.GetFiles(@"C:\\Games\World_of_Tanks\\", "*.*", SearchOption.AllDirectories);
-            foreach (string file in files)
-            {
-                Console.WriteLine($"{file} is present!");
-                System.Threading.Thread.Sleep(300); //This part here is supposed to go recursively through all folders but it doesnt seem to be working. I pla nto try and fix it later. I didt want to have all files.
+                //Everything kinda closes like this
+                /* So a note to make about this is that this is not what i intend for this function to do.
+                 * yes this does verify that files are existant but does not verify that files are missing nor does it check integrity.
+                 * The hope is to keep a nice lil array or list or something of all the neccissarry files and directories that need to be there
+                 * and have the tool check for them. that'll hopefully come to fruition. */
             }
         }
         public static void clearMods()
         {
-            string[] files = Directory.GetFiles(rootFolder);
-            foreach (string file in files)
+            System.IO.DirectoryInfo di = new DirectoryInfo(rootFolder);
+
+            foreach (FileInfo file in di.GetFiles())
             {
-                File.Delete(file); //This nereds to be improved. Im not entirely sure how effective this all is. I plan to improve it as time goes on
-                Console.WriteLine($"{file} was deleted.");
+                file.Delete();
+                Console.WriteLine($"{file} was deleted"); //This was massively overhauled. This would originally only delete files but most mods are in folders. So
+            } //We grab any files that might be there (this includes the readme file bc no one needs it if they're modding)
+            foreach (DirectoryInfo dir in di.GetDirectories())
+            {
+                dir.Delete(true);
+                Console.WriteLine($"{dir} was deleted");  //Start deleting directories as that bulk deletes all the mod contents in them. I could just run this and it could be faster buuuuut oh well.
+                //
             }
+            Console.WriteLine("Press any key to close.");
+            Console.ReadLine();
         }
         public static void informMe()
         {
@@ -107,19 +127,32 @@ namespace WoTTool
             Console.WriteLine("github.com/anonfoxer");
             Console.WriteLine("v1.0.0 - More features coming soon");
             Console.WriteLine(" ");
-            Console.WriteLine("1) Exit");
-            var choice2 = Console.ReadLine();
-            int bigChoice2 = Convert.ToInt32(choice2);
-
-            if (bigChoice2 == 1)
-            {
-                Exit();
-            }
+            Console.WriteLine("Press any key to close.");
+            Console.ReadLine();
         }
-
-            public static void Exit()
+        public static void cefDump()
         {
-            System.Environment.Exit(0);
+            // Read the log as one string.
+            string log = System.IO.File.ReadAllText(@"C:\Games\World_of_Tanks\cef.log");
+
+            // Display the log contents to the console. Variable text is a string.
+            System.Console.WriteLine("cef.log = {0}", log);
+            Console.WriteLine(" ");
+            Console.WriteLine("Press any key to close.");
+            Console.ReadLine();
+        }
+        public static void thisDoesntWork()
+        {
+            string[] curseclient = System.IO.Directory.GetFiles(@"C:\Games\World_of_Tanks\", "*.curseclient");
+            foreach (string file in curseclient)
+            {
+                System.IO.File.Delete(file);
+                Console.WriteLine($"{file} was deleted");
+            }
+            Console.WriteLine("Press any key to close.");
+            Console.ReadLine();
         }
     }
+
 }
+

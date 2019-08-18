@@ -125,7 +125,7 @@ namespace WoTTool
             Console.WriteLine("Updates available at:");
             Console.WriteLine("anonhub.weebly.com");
             Console.WriteLine("github.com/anonfoxer");
-            Console.WriteLine("v1.0.0 - More features coming soon");
+            Console.WriteLine("v1.1.0 - More features coming soon");
             Console.WriteLine(" ");
             Console.WriteLine("Press any key to close.");
             Console.ReadLine();

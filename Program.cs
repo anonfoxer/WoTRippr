@@ -10,7 +10,7 @@ namespace WoTTool
 {
     class Program
     {
-        static readonly string rootFolder = @"C:\Games\World_of_Tanks\res_mods\1.6.0.1\"; //This is the directory im using for the mods deletion. This means I have to update it with game patches but Im still trying to figure out a way to go through each directory and then delete stuff. Oh well, working on that lol. Least I updated this project and didnt abadon it.
+        static readonly string rootFolder = @"C:\Games\World_of_Tanks\res_mods\1.6.0.2\"; //This is the directory im using for the mods deletion. This means I have to update it with game patches but Im still trying to figure out a way to go through each directory and then delete stuff. Oh well, working on that lol. Least I updated this project and didnt abadon it.
         static void Main(string[] args)
         {
             Console.Clear();

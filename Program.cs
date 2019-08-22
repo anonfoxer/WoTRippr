@@ -1,35 +1,35 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace WoTTool
 {
     class Program
     {
-        static readonly string rootFolder = @"C:\Games\World_of_Tanks\res_mods\1.6.0.0\"; //This is the directory im using for the mods deletion. This means I have to update it with game patches but Im still trying to figure out a way to go through each directory and then delete stuff. Oh well, working on that lol. Least I updated this project and didnt abadon it.
+        static readonly string rootFolder = @"C:\Games\World_of_Tanks\res_mods\1.6.0.1\"; //This is the directory im using for the mods deletion. This means I have to update it with game patches but Im still trying to figure out a way to go through each directory and then delete stuff. Oh well, working on that lol. Least I updated this project and didnt abadon it.
         static void Main(string[] args)
         {
             Console.Clear();
             Console.WriteLine(@" 
- __      __            .__       .___       ___________ ___________              __            
-/  \    /  \___________|  |    __| _/   ____\_   _____/ \__    ___/____    ____ |  | __  ______
-\   \/\/   /  _ \_  __ \  |   / __ |   /  _ \|    __)     |    |  \__  \  /    \|  |/ / /  ___/
- \        (  <_> )  | \/  |__/ /_/ |  (  <_> )     \      |    |   / __ \|   |  \    <  \___ \ 
-  \__/\  / \____/|__|  |____/\____ |   \____/\___  /      |____|  (____  /___|  /__|_ \/____  >
-       \/                         \/             \/                    \/     \/     \/     \/ 
-                         __________.__                                                         
-                         \______   \__|_____ ______   ___________                              
-                          |       _/  \____ \\____ \_/ __ \_  __ \                             
-                          |    |   \  |  |_> >  |_> >  ___/|  | \/                             
-                          |____|_  /__|   __/|   __/ \___  >__|                                
-                                 \/   |__|   |__|        \/                                    
-
+ __      __            .__       .___         _____  ___________              __            
+/  \    /  \___________|  |    __| _/   _____/ ____\ \__    ___/____    ____ |  | __  ______
+\   \/\/   /  _ \_  __ \  |   / __ |   /  _ \   __\    |    |  \__  \  /    \|  |/ / /  ___/
+ \        (  <_> )  | \/  |__/ /_/ |  (  <_> )  |      |    |   / __ \|   |  \    <  \___ \ 
+  \__/\  / \____/|__|  |____/\____ |   \____/|__|      |____|  (____  /___|  /__|_ \/____  >
+       \/                         \/                                \/     \/     \/     \/ 
+                           __________.__                                                    
+                           \______   \__|_____ _____________                                
+                            |       _/  \____ \\____ \_  __ \                               
+                            |    |   \  |  |_> >  |_> >  | \/                               
+                            |____|_  /__|   __/|   __/|__|                                  
+                                   \/   |__|   |__|                                         
 
 - World of Tanks Ripper
-- v1.1.0
+- v1.2.0
 - by anonfoxer
 - (c) 2019
 - github.com/anonfoxer
@@ -40,8 +40,8 @@ namespace WoTTool
             Console.WriteLine("3. Clear all mods from res_mods"); //clearMods();
             Console.WriteLine("4. Dump cef.log"); //cefDump();
             Console.WriteLine("5. Remove stuff from Curse/Twitch Client"); //thisDoesntWork();
-            Console.WriteLine("6. Info"); //informMe();
-
+            Console.WriteLine("6. Country Bias Finder"); //russianBias();
+            Console.WriteLine("7. Info"); //informMe();
 
 
 
@@ -67,7 +67,11 @@ namespace WoTTool
             {
                 thisDoesntWork();
             }
-            if (bigChoice == 6)
+            if (bigChoice ==6)
+            {
+                russianBias();
+            }
+            if (bigChoice == 7)
             {
                 informMe();
             }
@@ -125,7 +129,7 @@ namespace WoTTool
             Console.WriteLine("Updates available at:");
             Console.WriteLine("anonhub.weebly.com");
             Console.WriteLine("github.com/anonfoxer");
-            Console.WriteLine("v1.1.0 - More features coming soon");
+            Console.WriteLine("v1.2.0 - More features coming soon");
             Console.WriteLine(" ");
             Console.WriteLine("Press any key to close.");
             Console.ReadLine();
@@ -151,6 +155,81 @@ namespace WoTTool
             }
             Console.WriteLine("Press any key to close.");
             Console.ReadLine();
+        }
+        public static void russianBias()
+        {
+#region nations
+            int r = 0; //russia
+            int c = 0; //china
+            int j = 0;//japan
+            int i = 0;//italy
+            int s = 0;//sweden
+            int z = 0;//czech
+            int a = 0;//usa
+            int b = 0;//great britian
+            int g = 0;//germany
+            int f = 0;//france
+#endregion
+            string[] replayslol = System.IO.Directory.GetFiles(@"C:\Games\World_of_Tanks\replays", "*.wotreplay");
+            foreach (string file in replayslol)
+            {
+                #region checks
+                if (file.Contains("_ussr-")) { 
+                    r++;
+                }
+                if (file.Contains("_china-"))
+                {
+                    c++;
+                }
+                if (file.Contains("_france-"))
+                {
+                    f++;
+                }
+                if (file.Contains("_usa-"))
+                {
+                    a++;
+                }
+                if (file.Contains("_japan-"))
+                {
+                    j++;
+                }
+                if (file.Contains("_germany-"))
+                {
+                    g++;
+                }
+                if (file.Contains("_uk-"))
+                {
+                    b++;
+                }
+                if (file.Contains("_italy-"))
+                {
+                    i++;
+                }
+                if (file.Contains("_sweden-"))
+                {
+                    s++;
+                }
+                if (file.Contains("_czech-"))
+                {
+                    z++;
+                }
+                #endregion
+            }
+            #region reveals
+            Console.WriteLine("You've played Russian vehicles " + r + " time(s)!");
+            Console.WriteLine("You've played Chinese vehicles " + c + " time(s)!");
+            Console.WriteLine("You've played French vehicles " + f + " time(s)!");
+            Console.WriteLine("You've played American vehicles " + a + " time(s)!");
+            Console.WriteLine("You've played German vehicles " + g + " time(s)!");
+            Console.WriteLine("You've played Japanese vehicles " + j + " time(s)!");
+            Console.WriteLine("You've played Italian vehicles " + i + " time(s)!");
+            Console.WriteLine("You've played Swedish vehicles " + s + " time(s)!");
+            Console.WriteLine("You've played Czechoslovakian vehicles " + z + " time(s)!");
+            Console.WriteLine("You've played British vehicles " + b + " time(s)!");
+            //repeat for all nations
+            Console.WriteLine("Press any key to close.");
+            Console.ReadLine();
+            #endregion
         }
     }
 

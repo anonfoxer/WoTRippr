@@ -5,7 +5,7 @@ World of Tanks game file management tool. Includes Replay and Mod deletion.
 - Updated to WoT Patch 1.6.0.3
 - Proper credit given in thanks to The fourth bird on StackOverflow
 
-#Special Thanks
+# Special Thanks
 - Special thanks to [The Fourth Bird](https://stackoverflow.com/users/5424988/the-fourth-bird) on StackOverflow for help on the Country Bias finder. I should've credited him earlier.
 
 <!-- Place this tag where you want the button to render. -->

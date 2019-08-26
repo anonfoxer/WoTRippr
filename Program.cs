@@ -10,7 +10,7 @@ namespace WoTTool
 {
     class Program
     {
-        static readonly string rootFolder = @"C:\Games\World_of_Tanks\res_mods\1.6.0.2\"; //This is the directory im using for the mods deletion. This means I have to update it with game patches but Im still trying to figure out a way to go through each directory and then delete stuff. Oh well, working on that lol. Least I updated this project and didnt abadon it.
+        static readonly string rootFolder = @"C:\Games\World_of_Tanks\res_mods\1.6.0.3\"; //This is the directory im using for the mods deletion. This means I have to update it with game patches but Im still trying to figure out a way to go through each directory and then delete stuff. Oh well, working on that lol. Least I updated this project and didnt abadon it.
         static void Main(string[] args)
         {
             Console.Clear();
@@ -29,7 +29,7 @@ namespace WoTTool
                                    \/   |__|   |__|                                         
 
 - World of Tanks Ripper
-- v1.2.0
+- v1.2.2
 - by anonfoxer
 - (c) 2019
 - github.com/anonfoxer
@@ -129,7 +129,7 @@ namespace WoTTool
             Console.WriteLine("Updates available at:");
             Console.WriteLine("anonhub.weebly.com");
             Console.WriteLine("github.com/anonfoxer");
-            Console.WriteLine("v1.2.0 - More features coming soon");
+            Console.WriteLine("v1.2.2 - More features coming soon");
             Console.WriteLine(" ");
             Console.WriteLine("Press any key to close.");
             Console.ReadLine();
@@ -170,6 +170,7 @@ namespace WoTTool
             int g = 0;//germany
             int f = 0;//france
 #endregion
+    //Special thanks to The fourth bird on StackOverflow for help on this!
             string[] replayslol = System.IO.Directory.GetFiles(@"C:\Games\World_of_Tanks\replays", "*.wotreplay");
             foreach (string file in replayslol)
             {

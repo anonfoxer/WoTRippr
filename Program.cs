@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +10,8 @@ namespace WoTTool
 {
     class Program
     {
-        static readonly string rootFolder = @"C:\Games\World_of_Tanks\res_mods\1.6.0.3\"; //This is the directory im using for the mods deletion. This means I have to update it with game patches but Im still trying to figure out a way to go through each directory and then delete stuff. Oh well, working on that lol. Least I updated this project and didnt abadon it.
+
+        static string rootFolder = @"C:\Games\World_of_Tanks\res_mods\1.6.0.3\"; //This is the directory im using for the mods deletion. This means I have to update it with game patches but Im still trying to figure out a way to go through each directory and then delete stuff. Oh well, working on that lol. Least I updated this project and didnt abadon it.
         static void Main(string[] args)
         {
             Console.Clear();
@@ -29,21 +30,24 @@ namespace WoTTool
                                    \/   |__|   |__|                                         
 
 - World of Tanks Ripper
-- v1.2.2
+- v1.3.0
 - by anonfoxer
 - (c) 2019
 - github.com/anonfoxer
 
 ");
+            #region main
             Console.WriteLine("1. Clear all replay files"); //clearReplays();
             Console.WriteLine("2. Verify all game files"); //verifyFiles();
             Console.WriteLine("3. Clear all mods from res_mods"); //clearMods();
             Console.WriteLine("4. Dump cef.log"); //cefDump();
             Console.WriteLine("5. Remove stuff from Curse/Twitch Client"); //thisDoesntWork();
             Console.WriteLine("6. Country Bias Finder"); //russianBias();
-            Console.WriteLine("7. Info"); //informMe();
+            Console.WriteLine("7. Delete logs"); //freeSpace();
+            Console.WriteLine("8. Clear temp"); //templesS();
+            Console.WriteLine("9. Info"); //informMe();
 
-
+            #region choicehandle
 
             var choice = Console.ReadLine();
             int bigChoice = Convert.ToInt32(choice);
@@ -67,16 +71,26 @@ namespace WoTTool
             {
                 thisDoesntWork();
             }
-            if (bigChoice ==6)
+            if (bigChoice == 6)
             {
                 russianBias();
             }
             if (bigChoice == 7)
             {
+                freeSpace();
+            }
+            if (bigChoice == 8)
+            {
+                templesS();
+            }
+            if (bigChoice == 9)
+            {
                 informMe();
             }
         }
+        #endregion
 
+        #endregion
         public static void clearReplays()
         {
             string[] replays = System.IO.Directory.GetFiles(@"C:\Games\World_of_Tanks\replays", "*.wotreplay");
@@ -129,7 +143,7 @@ namespace WoTTool
             Console.WriteLine("Updates available at:");
             Console.WriteLine("anonhub.weebly.com");
             Console.WriteLine("github.com/anonfoxer");
-            Console.WriteLine("v1.2.2 - More features coming soon");
+            Console.WriteLine("v1.3.0 - More features coming soon");
             Console.WriteLine(" ");
             Console.WriteLine("Press any key to close.");
             Console.ReadLine();
@@ -158,7 +172,7 @@ namespace WoTTool
         }
         public static void russianBias()
         {
-#region nations
+            #region nations
             int r = 0; //russia
             int c = 0; //china
             int j = 0;//japan
@@ -169,13 +183,13 @@ namespace WoTTool
             int b = 0;//great britian
             int g = 0;//germany
             int f = 0;//france
-#endregion
-    //Special thanks to The fourth bird on StackOverflow for help on this!
+            int p = 0; //poland
+            #endregion
             string[] replayslol = System.IO.Directory.GetFiles(@"C:\Games\World_of_Tanks\replays", "*.wotreplay");
             foreach (string file in replayslol)
             {
                 #region checks
-                if (file.Contains("_ussr-")) { 
+                if (file.Contains("_ussr-")) {
                     r++;
                 }
                 if (file.Contains("_china-"))
@@ -214,6 +228,10 @@ namespace WoTTool
                 {
                     z++;
                 }
+                if (file.Contains("_poland-"))
+                {
+                    p++;
+                }
                 #endregion
             }
             #region reveals
@@ -227,12 +245,40 @@ namespace WoTTool
             Console.WriteLine("You've played Swedish vehicles " + s + " time(s)!");
             Console.WriteLine("You've played Czechoslovakian vehicles " + z + " time(s)!");
             Console.WriteLine("You've played British vehicles " + b + " time(s)!");
+            Console.WriteLine("You've played Polish vehicles " + p + " time(s)!");
             //repeat for all nations
             Console.WriteLine("Press any key to close.");
             Console.ReadLine();
             #endregion
         }
+        public static void freeSpace()
+        {
+            string[] filess = System.IO.Directory.GetFiles(@"C:\Games\World_of_Tanks\", "*.log");
+            foreach (string file in filess)
+            {
+                System.IO.File.Delete(file);
+                Console.WriteLine($"{file} was deleted");
+            }
+            string[] filesss = System.IO.Directory.GetFiles(@"C:\Games\World_of_Tanks\logs\", "*.log");
+            foreach (string file in filesss)
+            {
+                System.IO.File.Delete(file);
+                Console.WriteLine($"{file} was deleted");
+            }
+            Console.WriteLine("Press any key to close.");
+            Console.ReadLine();
+        }
+        public static void templesS()
+        {
+            string[] filesss = System.IO.Directory.GetFiles(@"C:\Games\World_of_Tanks\UpdatesData\temp\", "*.*");
+            foreach (string file in filesss)
+            {
+                System.IO.File.Delete(file);
+                Console.WriteLine($"{file} was deleted");
+            }
+            Console.WriteLine("Press any key to close.");
+            Console.ReadLine();
+        }
     }
-
 }
 

@@ -11,7 +11,7 @@ namespace WoTTool
     class Program
     {
 
-        static string rootFolder = @"C:\Games\World_of_Tanks\res_mods\1.6.0.3\"; //This is the directory im using for the mods deletion. This means I have to update it with game patches but Im still trying to figure out a way to go through each directory and then delete stuff. Oh well, working on that lol. Least I updated this project and didnt abadon it.
+        static string rootFolder = @"C:\Games\World_of_Tanks\res_mods\1.6.0.4\"; //This is the directory im using for the mods deletion. This means I have to update it with game patches but Im still trying to figure out a way to go through each directory and then delete stuff. Oh well, working on that lol. Least I updated this project and didnt abadon it.
         static void Main(string[] args)
         {
             Console.Clear();
@@ -30,7 +30,7 @@ namespace WoTTool
                                    \/   |__|   |__|                                         
 
 - World of Tanks Ripper
-- v1.3.0
+- v1.3.1
 - by anonfoxer
 - (c) 2019
 - github.com/anonfoxer
@@ -143,7 +143,7 @@ namespace WoTTool
             Console.WriteLine("Updates available at:");
             Console.WriteLine("anonhub.weebly.com");
             Console.WriteLine("github.com/anonfoxer");
-            Console.WriteLine("v1.3.0 - More features coming soon");
+            Console.WriteLine("v1.3.1 - More features coming soon");
             Console.WriteLine(" ");
             Console.WriteLine("Press any key to close.");
             Console.ReadLine();

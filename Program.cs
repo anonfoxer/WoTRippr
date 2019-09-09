@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,13 +28,11 @@ namespace WoTTool
                             |    |   \  |  |_> >  |_> >  | \/                               
                             |____|_  /__|   __/|   __/|__|                                  
                                    \/   |__|   |__|                                         
-
-- World of Tanks Ripper
-- v1.3.1
+- World of Tanks Rippr
+- v1.4.0
 - by anonfoxer
 - (c) 2019
 - github.com/anonfoxer
-
 ");
             #region main
             Console.WriteLine("1. Clear all replay files"); //clearReplays();
@@ -45,7 +43,8 @@ namespace WoTTool
             Console.WriteLine("6. Country Bias Finder"); //russianBias();
             Console.WriteLine("7. Delete logs"); //freeSpace();
             Console.WriteLine("8. Clear temp"); //templesS();
-            Console.WriteLine("9. Info"); //informMe();
+            Console.WriteLine("9. Reset cef.log"); //logReset();
+            Console.WriteLine("10. Info"); //informMe();
 
             #region choicehandle
 
@@ -84,6 +83,10 @@ namespace WoTTool
                 templesS();
             }
             if (bigChoice == 9)
+            {
+                logReset();
+            }
+            if (bigChoice == 10)
             {
                 informMe();
             }
@@ -143,7 +146,7 @@ namespace WoTTool
             Console.WriteLine("Updates available at:");
             Console.WriteLine("anonhub.weebly.com");
             Console.WriteLine("github.com/anonfoxer");
-            Console.WriteLine("v1.3.1 - More features coming soon");
+            Console.WriteLine("v1.4.0 - More features coming soon");
             Console.WriteLine(" ");
             Console.WriteLine("Press any key to close.");
             Console.ReadLine();
@@ -188,7 +191,7 @@ namespace WoTTool
             string[] replayslol = System.IO.Directory.GetFiles(@"C:\Games\World_of_Tanks\replays", "*.wotreplay");
             foreach (string file in replayslol)
             {
-                #region checks
+                #region count
                 if (file.Contains("_ussr-")) {
                     r++;
                 }
@@ -235,6 +238,7 @@ namespace WoTTool
                 #endregion
             }
             #region reveals
+            Console.Write("");
             Console.WriteLine("You've played Russian vehicles " + r + " time(s)!");
             Console.WriteLine("You've played Chinese vehicles " + c + " time(s)!");
             Console.WriteLine("You've played French vehicles " + f + " time(s)!");
@@ -247,6 +251,53 @@ namespace WoTTool
             Console.WriteLine("You've played British vehicles " + b + " time(s)!");
             Console.WriteLine("You've played Polish vehicles " + p + " time(s)!");
             //repeat for all nations
+            #region calc
+            if(r > 10)
+            {
+                Console.WriteLine("You're biased to Russian Vehicles!");
+            }
+            if (c > 10)
+            {
+                Console.WriteLine("You're biased to Chinese Vehicles!");
+            }
+            if (f > 10)
+            {
+                Console.WriteLine("You're biased to French Vehicles!");
+            }
+            if (p > 10)
+            {
+                Console.WriteLine("You're biased to Polish Vehicles!");
+            }
+            if (a > 10)
+            {
+                Console.WriteLine("You're biased to American Vehicles!");
+            }
+            if (g > 10)
+            {
+                Console.WriteLine("You're biased to German Vehicles!");
+            }
+            if (j > 10)
+            {
+                Console.WriteLine("You're biased to Japanese Vehicles!");
+            }
+            if (i > 10)
+            {
+                Console.WriteLine("You're biased to Italian Vehicles!");
+            }
+            if (s > 10)
+            {
+                Console.WriteLine("You're biased to Swedish Vehicles!");
+            }
+            if (z > 10)
+            {
+                Console.WriteLine("You're biased to Czechoslovakian Vehicles!");
+            }
+            if (b > 10)
+            {
+                Console.WriteLine("You're biased to British Vehicles!");
+            }
+            #endregion
+            Console.Write("");
             Console.WriteLine("Press any key to close.");
             Console.ReadLine();
             #endregion
@@ -276,6 +327,15 @@ namespace WoTTool
                 System.IO.File.Delete(file);
                 Console.WriteLine($"{file} was deleted");
             }
+            Console.WriteLine("Press any key to close.");
+            Console.ReadLine();
+        }
+        public static void logReset()
+        {
+            string line = "cef.log overwritten by WoT Rippr";
+            File.WriteAllText(@"C:\Games\World_of_Tanks\cef.log", line);
+            Console.WriteLine("cef.log was overwritten. Please check it to verify.");
+            Console.WriteLine("Or don't. Im a computer program, not a cop.");
             Console.WriteLine("Press any key to close.");
             Console.ReadLine();
         }

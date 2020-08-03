@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
+using System.Collections.Specialized;
 using System.IO;
 using System.Text.RegularExpressions;
 
@@ -11,13 +13,13 @@ namespace WoTTool
     class Program
     {
 
-        static string rootFolder = @"C:\Games\World_of_Tanks\res_mods\1.9.*.*\"; //This is the directory im using for the mods deletion. This means I have to update it with game patches but Im still trying to figure out a way to go through each directory and then delete stuff. Oh well, working on that lol. Least I updated this project and didnt abadon it.
+        static string rootFolder = @"C:\Games\World_of_Tanks\res_mods\1.10.*\"; //currently still hardcoded to C: drive. 
         static void Main(string[] args)
         {
             Console.Clear();
             Console.WriteLine(@"                                 
 - World of Tanks Rippr
-- v2.0.0
+- v2.0.1
 - by anonfoxer
 - (c) 2019
 - github.com/anonfoxer
@@ -30,7 +32,7 @@ namespace WoTTool
             Console.WriteLine("5. Delete logs"); //freeSpace();
             Console.WriteLine("6. Clear temp"); //templesS();
             Console.WriteLine("7. Reset cef.log"); //logReset();
-            Console.WriteLine("8. Info/Changelog"); //informMe();
+            Console.WriteLine("8. Info, Changelog, ToDo List"); //informMe();
 
             #region choicehandle
 
@@ -112,13 +114,18 @@ namespace WoTTool
             Console.WriteLine("------ CHANGELOG ------");
             Console.WriteLine(" ");
             Console.WriteLine(@"                                 
-- v2.0.0
-- Removed Twitch/Curse client content removal.
-- Removed the file verifyer.
-- Cleaned up and optimized the code!
-- Added Changelog!
-- 
+- v2.0.1
+- Updated to WoT Patch 1.10.x
+- Added ToDo List
+ 
 ");
+            Console.WriteLine("------ TO DO------");
+            Console.WriteLine(" ");
+            Console.WriteLine(@"
+- A major rework of this tool will be coming soon, to bring WoTScythe v1.0. This will include a GUI, code optimization, and removal of junk code.
+- The original version of WoTRipper (soon to be WoTScythe) will be available on GitHub
+ ");
+            Console.WriteLine(" ");
             Console.WriteLine("Press any key to close.");
             Console.ReadLine();
         }
@@ -292,7 +299,7 @@ namespace WoTTool
         }
         public static void logReset()
         {
-            string line = "cef.log overwritten by WoT Rippr";
+            string line = "cef.log overwritten by WoTRippr";
             File.WriteAllText(@"C:\Games\World_of_Tanks\cef.log", line);
             Console.WriteLine("cef.log was overwritten. Please check it to verify.");
             Console.WriteLine("Or don't. Im a computer program, not a cop.");
